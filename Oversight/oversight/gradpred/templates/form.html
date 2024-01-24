@@ -1,0 +1,201 @@
+
+{% include "base.html" %}
+ <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+      </script>
+  <link rel="stylesheet" href="../static/navbar.css">
+  
+  <title>OverSight - Admission Prediction</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container">
+        <a class="navbar-brand" href="/home">Oversight</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/forums">Sight-Bud</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link active" href="/pro_ideas">Innovate Ave</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/notes">Sight-Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/gradpred">Sight-SAP</a>
+                </li>
+            </ul>
+        </div>
+        
+        
+
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %} 
+        <div class="dropdown">
+            <button class="submit" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../static/images/user.svg" width="20px" height="20px"> {{user.username}} 
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item"  href="/logout">Logout</a>
+                <a class="dropdown-item"  href="/saved" >Saved</a></button>
+            </div>
+        </div>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+      
+      <div></div>
+
+    </div>
+
+    
+</nav>
+
+
+
+  
+<form style="padding-left:100px ; padding-right:100px ; margin-top:50px ;" action="" method="POST" >
+
+    
+            {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="gre">Enter GRE Score : </label>
+                <input style="border-style: solid; border-color : #252525" type="text" class="form-control" name="gre" id="gre" placeholder="GRE score" required>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="lor">Enter Number of LORs :</label>
+                <input style="border-style: solid; border-color : #252525" type="text" class="form-control" id="lor" name="lor" placeholder="Number of LORs" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="cgpa">Enter Score of CGPA :</label>
+                <input  style="border-style: solid; border-color : #252525" type="text" class="form-control" name="cgpa" placeholder="Average CGPA" required>
+              </div>
+
+          <div class="form-group col-md-6">
+            <label for="toefl">Enter TOEFL Score :</label>
+            <input  style="border-style: solid; border-color : #252525" type="text" class="form-control" id="toefl" name="toefl" placeholder="TOEFL Score" required>
+          </div>
+        </div>      
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputState">Enter University Tier :</label>
+                <select style="border-style: solid; border-color : #252525" name="uni"  class="form-control" required>
+                  <option value="4">IIT</option>
+                  <option value="3">Tier 1</option>
+                  <option value="2">Tier 2</option>
+                  <option value="1">Tier 3</option>
+                </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="sop">Enter SOP Rating : </label>
+                  <input style="border-style: solid; border-color : #252525" type="text" class="form-control" name="sop" id="sop" placeholder="SOP Rating" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputState">Research :</label>
+                  <select style="border-style: solid; border-color : #252525" name="research"  class="form-control" required>
+                    <option value="0">Yes</option>
+                    <option value="1">No</option>
+                  </select>
+              </div>
+          </div>    
+
+        </div>
+
+        
+          <input style="background-image: linear-gradient(to right, #EC6F66 0%, #F3A183 51%, #EC6F66 100%); color:white ;border-style: solid; border-color : #252525" type="submit" value="Predict Admission" class="btn btn-primary">
+        </form>
+        
+    {% if output == 0 %}
+    <div class="container" style="border-style: solid; border-color : #252525">
+    <h4 style="text-align: center; color: #C60021; margin-top : 10px">Your Admit is difficult, Please improve your Profile</h4>
+        {% if lst %}
+        <h5 style="margin-left : 80px; color:black ;"> Still you can manage to get into:</h4><br>
+          <h6 style="margin-left : 80px; color:black ;"> No. of Colleges you can get into : {{ count }} </h6> <br>
+          <ul style="margin-left : 80px;">
+        {% for i in lst %}
+        <li>{{ i }}</li><br>
+        {% endfor %}
+      </ul>
+        {% else %}
+        {% for i in lst %}
+        {{ i }}<br>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    {% elif output == 1 %}
+    <div class="container" style="border-style: solid; border-color : #252525">
+    <h4 style="text-align: center; color: #C60021; margin-top : 10px">You can expect an admit </h4><br>
+    <h5 style="margin-left : 80px; color:black ;">Colleges you can get into :</h5>
+    <h6 style="margin-left : 80px; color:black ;"> No. of Colleges you can get into : {{ count }} </h6> <br>
+    <ul style="margin-left : 80px;">
+    {% for i in lst %}
+    <li>{{ i }}</li><br>
+    {% endfor %}
+    </ul>
+  </div>
+    {% else %}
+    <h4 > </h4>
+    {% endif %}
+    
+ 
+
+    </body>
+</html> 
+
+
+
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+  
+  
+  body {
+      background-color: #fff;
+  }
+  
+  .submit {
+      background-image: linear-gradient(to right, #EC6F66 0%, #F3A183 51%, #EC6F66 100%);
+      margin: 10px;
+      padding: 7px 35px;
+      text-align: center;
+      text-transform: uppercase;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;
+      box-shadow: 0 0 20px #eee;
+      border-radius: 10px;
+      display: block;
+      border: 1px solid #eee;
+      margin-top: 10px;
+      margin-left:85px ;
+  }
+  
+  .submit:hover {
+      background-position: right center;
+      /* change the direction of the change here */
+      color: #fff;
+      text-decoration: none;
+      border: none;
+  }
+  
+  </style>

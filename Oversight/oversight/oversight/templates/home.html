@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/navbar.css">
+    <link rel="stylesheet" href="../static/home.css">
+    <title>Oversight-Home</title>
+</head>
+
+<body>
+    <header class="banner" >
+        <nav class="navbar navbar-expand-lg " >
+            <div class="container" style="background-color:#537FE7">
+                <a class="navbar-brand" href="/" style="color: #fff;">Oversight</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/forums" style="color: #fff;">Sight-Bud</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="/pro_ideas" style="color: #fff; ">Innovate Ave</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/notes" style="color: #fff; ">Sight-Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/gradpred" style="color: #fff; ">Sight-SAP</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="banner-text">
+            <div class="text" style="align-self: flex-start;">
+                <h1 style="font-size: 64px;">Life is</h1>
+                <h1 style="font-size: 64px;">simpler with AI.</h1>
+                {% if user.is_authenticated %}     
+                Welcome, {{user.username}}   
+            {% else %}
+                <button type="button" class="btn btn-outline-light signup"> <a href="/register" class="log"
+                        style="color: #252525;">Register</a></button>
+                <button type="button" class="btn btn-light login"> <a href="/login" class="log"
+                        style="color: #252525;">Login</a></button>
+            {% endif %}
+        </div>
+            <img src="../static/images/chatbot.png" alt="" style="width: 300px; height: 300px; align-self: flex-end;">
+        </div>
+    </header>
+    <section class="about">
+        <div class="container">
+            <h2 class="about-heading">Oversight</h2>
+            <p class="about-text">Oversight is a dynamic web platform that offers a myriad of useful features for students, researchers,
+                 and professionals alike. With its advanced note-taking functionality, users can capture and organize their thoughts 
+                 and ideas with ease. The state-of-the-art chatbot provides quick and accurate responses to queries, making 
+                 communication effortless and streamlined. Additionally, the cutting-edge project ideas generation 
+                 feature assists users in generating innovative and creative ideas for their next big project. 
+                 Moreover, the student admission prediction tool uses sophisticated algorithms and machine learning 
+                 techniques to predict a user's chances of getting admitted to their desired program or institution. 
+                 Overall, Oversight is a comprehensive and intuitive web app that empowers its users to achieve their academic goals</p>
+        </div>
+    </section>
+    <section class="buddy">
+        <div class="container">
+            <div class="float-start">
+                <h3 class="explain-heading">Sight-Bud</h3>
+            </div>
+            <div class="float-end">
+                <div class="box">
+                    <p class="explain-text">SightBud, the chatbot integrated with ChatGPT! With advanced natural language processing 
+                        and a witty personality, SightBud is the ultimate companion for all your educational needs.</p>
+                    <button type="button" class="btn btn-outline-light"  onclick="window.location.href='forums'">Try Buddy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="innovate">
+        <div class="container">
+            <div class="float-start">
+                <div class="box">
+                    <p class="explain-text">Innovate Avenue, the brainchild of Oversight, allows users to explore their passions and unlock their 
+                        creativity by generating a plethora of unique project ideas. By integrating with ChatGPT, this feature harnesses 
+                        the power of natural language processing to provide personalized and insightful project suggestions that align with the user's 
+                        interests and abilities.</p>
+                    <button type="button" class="btn btn-outline-light" onclick="window.location.href='pro_ideas'">Innovate Now</button>
+                </div>
+
+            </div>
+            <div class="float-end">
+                <h3 class="explain-heading">Innovate Avenue</h3>
+            </div>
+        </div>
+    </section>
+    <section class="notes">
+        <div class="container">
+            <div class="float-start">
+                <h3 class="explain-heading">Sight-Notes</h3>
+            </div>
+            <div class="float-end">
+                <div class="box">
+                    <p class="explain-text">Sight-Notes, a sophisticated feature of Oversight, seamlessly integrates with ChatGPT 
+                        to enable effortless and efficient note-taking. With Sight-Notes, note-taking is elevated to a truly 
+                        advanced and seamless experience. 
+                    </p>
+                    <button type="button" class="btn btn-outline-light" onclick="window.location.href='notes'">Try Notes</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sap">
+        <div class="container">
+            <div class="float-start">
+                <div class="box">
+                    <p class="explain-text">Our SVR-based admission prediction feature that considers various factors such as GRE scores, 
+                        TOEFL scores, and more to accurately predict the likelihood of admission. The output provides insights into the 
+                        colleges and universities where students have higher chances of getting accepted.</p>
+                    <button type="button" class="btn btn-outline-light" onclick="window.location.href='gradpred'">Sight-SAP</button>
+                </div>
+
+            </div>
+            <div class="float-end">
+                <h3 class="explain-heading">Sight-SAP</h3>
+            </div>
+        </div>
+    </section>
+    <div class="space"></div>
+</body>
+
+</html>

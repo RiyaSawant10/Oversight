@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+
+
+body {
+    background-color: #fff;
+}
+
+
+.float-start {
+    width: 50%;
+    margin-right: 0px;
+}
+
+.float-end {
+    text-align: start;
+}
+
+h1 {
+    font-size: 40px;
+    margin-top: 50px;
+    margin-left: 25px;
+    color: #252525;
+}
+
+h1 span {
+    font-family: 'Dancing Script', cursive;
+    color: #f6a192;
+    font-size: 64px;
+}
+
+
+.div-inline {
+    display: inline;
+}
+
+.drop {
+    display: inline;
+    background-color: #fff;
+    color: #252525;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+
+}
+
+.drop {
+    background-color: #fff;
+    color: #252525;
+    border: 2px solid #252525;
+    border-radius: 10px;
+}
+
+.drop:hover {
+    color: #252525;
+}
+
+input[type=text] {
+    background-color: #fff;
+    border: 2px solid #252525;
+    border-radius: 10px;
+    color: #252525;
+    width: 200px;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.submit {
+    background-image: linear-gradient(to right, #EC6F66 0%, #F3A183 51%, #EC6F66 100%);
+    margin: 10px;
+    padding: 7px 35px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    border: 1px solid #eee;
+    margin-left: 75%;
+    margin-top: 20px;
+}
+
+.submit:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+    border: none;
+}
+
+.response {
+    width: 500px;
+    height: 350px;
+    background-color: #fff;
+    border: 2px solid #252525;
+    color: #252525;
+    border-radius: 20px;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #252525;
+    margin-top: 30px;
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #252525;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}

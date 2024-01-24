@@ -1,0 +1,131 @@
+{% include "base.html" %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+    <link rel="stylesheet" href="../static/navbar.css">
+    <link rel="stylesheet" href="../static/project.css">
+    <title>OverSight - Saved</title>
+</head>
+
+<nav class="navbar navbar-expand-lg ">
+    <div class="container">
+        <a class="navbar-brand" href="/">Oversight</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/forums">Sight-Bud</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link active" href="/pro_ideas">Innovate Ave</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/notes">Sight-Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/gradpred">Sight-SAP</a>
+                </li>
+            </ul>
+        </div>
+        
+        
+
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %} 
+        <div class="dropdown">
+            <button class="submit" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../static/images/user.svg" width="20px" height="20px"> {{user.username}} 
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item"  href="/logout">Logout</a>
+                <a class="dropdown-item"  href="/saved" >Saved</a></button>
+            </div>
+        </div>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+      
+      <div></div>
+
+    </div>
+
+    
+</nav>
+<div class="container"> 
+<form method="POST">
+    {% csrf_token %}
+
+{% if t == 1 %}
+<h3>Project Ideas</h3>
+
+{% for i in ideas %}
+<p>{{ i }}</p> 
+{% endfor %}
+<input type="submit" class="submit" name="deleteideas" value="Delete All"></input><br><br>
+{% elif t == 3 %}
+
+<h3>Notes</h3>
+{% for i in notes %}
+<p>{{ i }}</p> 
+{% endfor %}
+<input type="submit" class="submit" name="deletenotes" value="Delete All"></input><br><br>
+
+{% elif t == 2 %}
+<h3>Question Bank</h3>
+{% for i in questions %}
+<p>{{ i }} </p> 
+{% endfor %}
+<input type="submit" class="submit" name="deleteque" value="Delete All"></input><br><br>
+
+</form>
+</div>
+{% endif %}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+    
+    
+    body {
+        background-color: #fff;
+    }
+    
+    .submit {
+        background-image: linear-gradient(to right, #EC6F66 0%, #F3A183 51%, #EC6F66 100%);
+        margin: 10px;
+        padding: 7px 35px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+        border: 1px solid #eee;
+        margin-top: 10px;
+        margin-left:85px ;
+    }
+    
+    .submit:hover {
+        background-position: right center;
+        /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+        border: none;
+    }
+    
+    </style>

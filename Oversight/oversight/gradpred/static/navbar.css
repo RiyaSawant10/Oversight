@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+
+
+.container {
+    padding: 0.5rem;
+    background-color: #fff;
+}
+
+
+.navbar-brand {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
+    font-size: 30px;
+    margin-right: 20%;
+    color: #537FE7;
+}
+
+.navbar-brand:hover {
+    color: #537FE7;
+}
+
+.navbar .nav-link {
+    font-family: 'Montserrat', sans-serif;
+    color: #252525;
+    margin-left: 10px;
+    text-shadow: 0px 0px 1.5px rgba(255, 255, 255, 1);
+    transition: all 0.2s ease 0s;
+}
+
+.navbar .nav-link:hover {
+    color: black;
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    transition: all 0.2s ease 0s;
+}
+
+.saved {
+    background-image: linear-gradient(to right, #EC6F66 0%, #F3A183 51%, #EC6F66 100%);
+    margin: 10px;
+    padding: 7px 35px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    border: 1px solid #eee;
+}
+
+.saved:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+    border: none;
+}

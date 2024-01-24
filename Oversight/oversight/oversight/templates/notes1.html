@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+    <link rel="stylesheet" href="../static/navbar.css">
+    <link rel="stylesheet" href="../static/project.css">
+    <title>OverSight - Notes</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container">
+            <a class="navbar-brand" href="/">Oversight</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forums">Sight-Bud</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="/pro_ideas">Innovate Ave</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/notes">Sight-Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/gradpred">Sight-SAP</a>
+                    </li>
+                </ul>
+            </div>
+            
+            
+
+          <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %} 
+            <div class="dropdown">
+                <button class="submit" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="../static/images/user.svg" width="20px" height="20px"> {{user.username}} 
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"  href="/logout">Logout</a>
+                    <a class="dropdown-item"  href="/saved" >Saved</a></button>
+                </div>
+            </div>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            {% endif %}
+          </ul>
+          
+          <div></div>
+
+        </div>
+
+        
+    </nav>
+    <section class="main">
+        <div class="container">
+            <h1><span>Guide </span>you through the labyrinth of <span
+                    style="color: #537FE7; font-size: 64px;">knowledge</span></h1>
+
+            <form method="POST">
+                {% csrf_token %}
+                
+
+                <div class="float-start">
+                    <h3>Enter the following details</h3>
+
+
+                    
+                    <div class="div-inline">
+                        <select name="type" class="form-select drop" aria-label="Default select example">
+                            <option value="1">Notes</option>
+                            <option value="2">Questions</option>
+                        </select> <br>
+
+                        
+                        
+                        
+                        {% comment %} <label for="domain">Enter Topic : </label> {% endcomment %}
+                        <input type="text" class="form-control" name="branch" id="branch"
+                        placeholder="Enter Branch"><br>
+
+
+                        {% comment %} <label for="domain">Enter Subject : </label> {% endcomment %}
+                    <input type="text" class="form-control" name="sub" id="subject"
+                        placeholder="Enter Subject"><br>
+
+
+
+                        {% comment %} <label for="domain">Enter Sem : </label> {% endcomment %}
+                    <input type="text" class="form-control" name="sem" id="sem"
+                        placeholder="Enter Sem"><br>
+
+
+                        {% comment %} <label for="domain">Enter Branch : </label> {% endcomment %}
+                   
+
+                        <input type="text" class="form-control" name="chp" id="topic"
+                        placeholder="Enter Topic"><br>
+                        
+                    <input type="submit" value="Generate" class="submit" name="submit"></input>
+                </div>
+            </div>
+        
+                <div class="float-end">
+                    
+                    <div class="response">
+                        {% if response %}
+                        <h3> Ideas curated for you</h3>
+                        <div class="response2">
+                            <p>
+                        {% if type == 1 %}
+                        {{ response }}
+                        {% elif type == 2 %}
+                            {% for i in r %}
+                            {{ i }}<br>
+                            {% endfor %}
+                        {% endif %}
+                        {% if user.is_authenticated %}  
+                        <input type="hidden" name="savecontent" value="{{ response }}">
+                        <input type="hidden" name="savecontenttype" value="{{ type }}">
+                        <input onclick="alert('Saved!')" type="submit" class="submit" name="save" value="SAVE"
+                        id="save"></input>
+                        {% endif %}
+                        </p>
+                    
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </section>
+    <script>
+        function change() {
+            var elem = document.getElementById("save");
+            if (elem.value == "SAVE") elem.value = "Saved!";
+
+        }
+    </script>
+</body>
+
+</html>
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+
+
+body {
+    background-color: #fff;
+}
+
+p{
+    margin:20px;
+}
+.float-start {
+    width: 45%;
+    margin-right: 0px;
+}
+
+.float-end {
+    text-align: start;
+}
+
+h1 {
+    font-size: 40px;
+    margin-top: 50px;
+    margin-left: 25px;
+    color: #252525;
+}
+
+h1 span {
+    font-family: 'Dancing Script', cursive;
+    color: #f6a192;
+    font-size: 64px;
+}
+
+
+.div-inline {
+    display: inline;
+}
+
+.drop {
+    display: inline;
+    background-color: #fff;
+    color: #252525;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    width: 50% ;
+
+
+}
+
+.drop {
+    background-color: #fff;
+    color: #252525;
+    border: 2px solid #252525;
+    border-radius: 10px;
+}
+
+.drop:hover {
+    color: #252525;
+}
+
+input[type=text] {
+    background-color: #fff;
+    border: 2px solid #252525;
+    border-radius: 10px;
+    color: #252525;
+    width: 50%;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.submit {
+    background-image: linear-gradient(to right, #EC6F66 0%, #F3A183 51%, #EC6F66 100%);
+    margin: 10px;
+    padding: 7px 35px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    border: 1px solid #eee;
+    margin-top: 10px;
+    margin-left:85px ;
+}
+
+.submit:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+    border: none;
+}
+
+.response {
+    width:700px ;
+    height: 350px;
+    background-color: #fff;
+    border: 2px solid white;
+    color: white;
+    border-radius: 20px;
+}
+
+.response2{
+    border: 2px solid #252525;
+    color: #252525;
+    border-radius: 20px;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #252525;
+    margin-top: 30px;
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #252525;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+</style>
