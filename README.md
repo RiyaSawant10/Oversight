@@ -16,8 +16,10 @@ Admission Probability Prediction Model: Predicts the student's probability of ad
 
 
 
+![image](https://github.com/RiyaSawant10/Oversight/assets/134770736/87688cef-4f43-4560-9c75-d93b135f92b6)
 
 ![image](https://github.com/RiyaSawant10/Oversight/assets/134770736/fbefa99e-38ba-47a9-85a5-d265821123d2)
-
+![image](https://github.com/RiyaSawant10/Oversight/assets/134770736/222ef3de-344b-450a-b0c6-ae964a5cf2fa)
+![image](https://github.com/RiyaSawant10/Oversight/assets/134770736/72a221cb-9a1e-488d-9989-3b88be182a78)
 
 ![image](https://github.com/RiyaSawant10/Oversight/assets/134770736/566a5159-e34a-4187-9b20-8a0624df3286)Engineering Student Companion Web Application
